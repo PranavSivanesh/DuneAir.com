@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dune Air — Explore the Sands. Fly the Skies.</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">Dune Air</a>
+      <nav>
+        <a href="loyalty.html">Dune Miles</a>
+        <a href="#" id="adminTrigger">Admin</a>
+        <span id="adminIndicator" style="display: none; color: #4caf50; font-size: 0.85em; font-weight: 700;">● ADMIN MODE</span>
+        <a href="#" id="editFlightsBtn" style="display: none;">Edit Flight Details</a>
+        <a href="#" id="loginTrigger">Log In</a>
+        <span id="userNavInfo" style="display: none; color: var(--color-text-light); font-size: 0.9em;">
+          <span id="navUserEmail"></span>
+          <a href="#" id="navLogoutBtn" style="margin-left: 10px; color: var(--color-accent);">Logout</a>
+        </span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Admin password modal -->
+  <div id="adminModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Admin Access</h3>
+        <span class="close-admin-modal">&times;</span>
+      </div>
+      <form id="adminForm" class="modal-form">
+        <input type="password" id="adminPassword" placeholder="Enter Admin Password" required class="form-input" autocomplete="off">
+        <div id="adminError" style="color: #d32f2f; font-size: 0.9em; margin-top: 10px; display: none;"></div>
+        <button type="submit" class="btn primary full-width">Access Admin Mode</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Login/Signup modal -->
+  <div id="loginModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="authModalTitle">Log In / Sign Up</h3>
+        <span class="close-modal">&times;</span>
+      </div>
+      <form id="loginForm" class="modal-form">
+        <input type="email" id="authEmail" placeholder="Email Address" required class="form-input">
+        <input type="password" id="authPassword" placeholder="Password" required class="form-input">
+        <div id="confirmPasswordField" style="display: none;">
+          <input type="password" id="authConfirmPassword" placeholder="Confirm Password" class="form-input">
+        </div>
+        <div id="authError" style="color: #d32f2f; font-size: 0.9em; margin-top: 10px; display: none;"></div>
+        <button type="submit" class="btn primary full-width" id="authSubmitBtn">Log In</button>
+        <div class="modal-footer">
+          <p id="authToggleText">Don't have an account? <a href="#" id="authToggleLink" style="color: var(--color-primary); font-weight: 700;">Sign Up</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- User info display when logged in -->
+  <div id="userInfo" style="display: none;">
+    <span id="userEmail"></span>
+    <button id="logoutBtn" class="btn secondary" style="margin-left: 10px;">Logout</button>
+  </div>
+
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-text container">
+      <h1 class="headline">Explore the Sands. Fly the Skies.</h1>
+      <p class="sub-headline">Book your premium journey today.</p>
+    </div>
+  </section>
+
+  <section class="container main-content-wrap">
+    <div class="booking-card">
+      <h2>Find & Book Your Flight</h2>
+      <form id="searchForm" class="booking-form">
+        <!-- Flight search form -->
+        <div class="form-grid">
+          <select id="fromInput" class="form-input">
+            <option value="">Any Departure City</option>
+          </select>
+
+          <select id="toInput" class="form-input">
+            <option value="">Any Destination</option>
+          </select>
+
+          <input type="date" id="departInput" class="form-input date-input" placeholder="Any Date">
+
+          <select id="passengerCount" class="form-input" style="grid-column: span 3;">
+            <option value="1">1 Passenger</option>
+            <option value="2">2 Passengers</option>
+            <option value="3">3 Passengers</option>
+            <option value="4">4 Passengers</option>
+          </select>
+        </div>
+
+        <div style="margin-top: 15px; text-align: center;">
+          <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.95em;">
+            <input type="checkbox" id="flexibleDates" checked>
+            <span>Show flights ±3 days from selected date</span>
+          </label>
+        </div>
+
+        <div id="advancedFilters" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
+          <h3 style="margin-bottom: 15px; font-size: 1.1em;">Filter Results</h3>
+          <div class="form-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+            <select id="sortBy" class="form-input">
+              <option value="">Sort by Price</option>
+              <option value="price_asc">Price: Low to High</option>
+              <option value="price_desc">Price: High to Low</option>
+            </select>
+
+            <select id="timeFilter" class="form-input">
+              <option value="">Departure Time</option>
+              <option value="morning">Morning (6AM - 12PM)</option>
+              <option value="afternoon">Afternoon (12PM - 6PM)</option>
+              <option value="evening">Evening (6PM - 12AM)</option>
+              <option value="night">Night (12AM - 6AM)</option>
+            </select>
+
+            <select id="classFilter" class="form-input">
+              <option value="">Any Class</option>
+              <option value="F">First Class</option>
+              <option value="B">Business Class</option>
+              <option value="E">Economy Class</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-top: 20px; text-align: center; display: flex; gap: 15px; justify-content: center; align-items: center;">
+          <button type="submit" class="btn primary">Search Flights</button>
+          <button type="button" class="btn primary" id="viewAllFlightsBtn">View All Flights</button>
+        </div>
+      </form>
+
+      <div id="searchHistory" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
+        <h3 style="margin-bottom: 10px; font-size: 1.1em;">Recent Searches</h3>
+        <div id="historyList" style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <p style="color: #999; font-size: 0.9em;">No recent searches</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking history (only shown when logged in) -->
+  <section class="container main-content-wrap" id="bookingHistorySection" style="display: none; margin-top: 40px;">
+    <div class="booking-card">
+      <h2>My Bookings</h2>
+      <div id="bookingHistoryList">
+        <p style="text-align: center; color: #999;">Loading your bookings...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Loyalty summary -->
+  <section class="container main-content-wrap" id="loyaltySummarySection" style="display: none; margin-top: 20px;">
+    <div class="booking-card">
+      <h2>Your Loyalty Points</h2>
+      <div id="loyaltySummaryContent">
+        <p style="text-align: center; color: #999;">Log in to view your loyalty points.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container promo-section">
+    <h3>Why Dune Air?</h3>
+    <div class="promo-grid">
+      <div class="promo-item">
+        <div class="promo-icon">✨</div>
+        <h4>Unmatched Comfort</h4>
+        <p>Experience our award-winning service and premium cabins.</p>
+        <a href="#comfort-info" class="promo-link" id="comfortLink">Learn More</a>
+      </div>
+      <div class="promo-item">
+        <div class="promo-icon">✈️</div>
+        <h4>Global Network</h4>
+        <p>Connecting you from the Gulf to major worldwide hubs.</p>
+        <a href="network.html" class="promo-link">View Map</a>
+      </div>
+      <div class="promo-item">
+        <div class="promo-icon">💎</div>
+        <h4>Dune Miles</h4>
+        <p>Earn points with every flight and climb the loyalty tiers.</p>
+        <a href="loyalty.html" class="promo-link">Join Program</a>
+      </div>
+    </div>
+  </section>
+  
+  <section class="container comfort-section" id="comfort-info" style="display:none;">
+    <div class="booking-card">
+        <h2>Unmatched Comfort by Dune Air</h2>
+        <p>At Dune Air, we redefine luxury travel. Our fleet features state-of-the-art climate control, ensuring a smooth flight even above the hottest deserts. Enjoy fully flat beds in First and Business class, gourmet dining inspired by regional flavors, and the industry's most generous baggage allowance. Our commitment is to provide "Comfort above the dunes".</p>
+        <ul>
+            <li>✨ Premium, personalized service on every flight.</li>
+            <li>🍴 Gourmet meals prepared by award-winning chefs.</li>
+            <li>💺 Latest generation seating with ample space in every cabin.</li>
+            <li>🎧 Over 4,000 channels of in-flight entertainment.</li>
+        </ul>
+    </div>
+  </section>
+
+  <script src="auth.js"></script>
+  <script src="script-api.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

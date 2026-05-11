@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dune Air — Select Your Seat</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <header class="navbar small">
+    <div class="container nav-content">
+      <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">Dune Air</a>
+      <nav>
+        <a href="index.html">Book Flight</a>
+        <a href="loyalty.html">Dune Miles</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="container page-content">
+    <div class="booking-card form-wrap" style="max-width: 700px;">
+        <h2 class="page-title">Select Your Seat</h2>
+        
+        <p id="seatPriceSummary" style="text-align: center; font-size: 1.2em; font-weight: 700; color: var(--color-primary); margin-bottom: 20px;">
+            Select seats for all passengers.
+        </p>
+
+        <div id="seatMap" class="seat-map-grid">
+            </div>
+
+        <div class="seat-actions" style="display: flex; justify-content: space-between; margin-top: 30px;">
+            <button onclick="window.location.href='passenger.html'" class="btn secondary">← Back to Passenger Details</button>
+            <button id="proceedPaymentBtn" class="btn primary" disabled>Select seats to proceed</button>
+        </div>
+    </div>
+  </section>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

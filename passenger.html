@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dune Air — Passenger Details</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <header class="navbar small">
+    <div class="container nav-content">
+      <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">Dune Air</a>
+      <nav>
+        <a href="index.html">Book Flight</a>
+        <a href="loyalty.html">Dune Miles</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="container page-content">
+    <div class="booking-card form-wrap">
+      <h2 class="page-title" id="passengerInfo">Passenger Details</h2>
+      
+      <form id="passengerForm" class="booking-form">
+        <input type="text" id="passName" placeholder="Full Name (as per ID)" required class="form-input">
+        <input type="email" id="passEmail" placeholder="Email Address" required class="form-input">
+        <input type="text" id="passID" placeholder="Passport / EID Number" required class="form-input">
+        <input type="tel" id="passPhone" placeholder="Contact Number (e.g., +971 50 XXXXXXX)" required class="form-input">
+        
+        <button type="submit" class="btn primary full-width" id="nextPassengerBtn">Continue to Seat Selection</button>
+      </form>
+      
+      <button onclick="window.location.href='results.html'" class="btn secondary back-btn-float" style="margin-top: 10px;">← Back to Flights</button>
+    </div>
+  </section>
+  
+  <script src="script-api.js"></script>
+</body>
+</html>

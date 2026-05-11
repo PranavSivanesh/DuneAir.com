@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dune Air — Payment</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <header class="navbar small">
+    <div class="container nav-content">
+      <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">Dune Air</a>
+      <nav>
+        <a href="index.html">Book Flight</a>
+        <a href="loyalty.html">Dune Miles</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="container page-content">
+    <div class="booking-card form-wrap">
+      <h2 class="page-title">Complete Your Payment</h2>
+      
+      <div class="summary-grid">
+        <h3 class="summary-header">Booking Summary</h3>
+        <p><strong>Flight:</strong> <span id="sumFlight">N/A</span></p>
+        <p><strong>Passengers:</strong> <span id="sumPassengers">N/A</span></p>
+        <p><strong>Seats:</strong> <span id="sumSeats">N/A</span></p>
+        <hr style="margin: 10px 0;">
+        <p style="font-size: 1.5em; font-weight: 900; color: var(--color-accent);">Total Due: <span id="sumTotal">AED 0</span></p>
+        <div id="loyaltyPreview" style="margin-top: 12px; padding: 12px; border: 1px solid #d7e3ff; background: #f7f9ff; border-radius: 8px;">
+          <strong>Loyalty:</strong> Earn <span id="loyaltyPreviewPoints">0</span> Dune Miles with this booking.
+        </div>
+      </div>
+
+      <form id="paymentForm" class="booking-form">
+        <h3 style="margin-bottom: 15px; color: var(--color-text-dark);">Card Details</h3>
+        <input type="text" id="cardName" placeholder="Name on Card" required class="form-input">
+        <input type="text" id="cardNumber" placeholder="Card Number (XXXX-XXXX-XXXX-XXXX)" required pattern="\d{4}-?\d{4}-?\d{4}-?\d{4}" class="form-input">
+        <div class="form-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 0;">
+            <input type="text" id="cardExpiry" placeholder="MM/YY" required pattern="\d{2}/\d{2}" class="form-input" style="margin-bottom: 0;">
+            <input type="text" id="cardCVV" placeholder="CVV" required pattern="\d{3,4}" class="form-input" style="margin-bottom: 0;">
+        </div>
+        
+        <button type="submit" class="btn primary full-width" style="margin-top: 30px;">Pay Now</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="success-modal" id="successModal">
+    <div class="success-content">
+      <div class="success-header">
+        <div class="success-icon">✓</div>
+        <h2>Booking Confirmed!</h2>
+      </div>
+      <div class="success-body">
+        <p style="text-align: center; margin-bottom: 20px; color: #666;">Your payment has been processed successfully.</p>
+
+        <div class="booking-details">
+          <div class="detail-row">
+            <span class="detail-label">Booking ID:</span>
+            <span class="detail-value" id="confirmBookingId">-</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Flight:</span>
+            <span class="detail-value" id="confirmFlight">-</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Passengers:</span>
+            <span class="detail-value" id="confirmPassengers">-</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Seats:</span>
+            <span class="detail-value" id="confirmSeats">-</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Total Paid:</span>
+            <span class="detail-value" id="confirmTotal" style="color: var(--color-accent);">-</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Loyalty Earned:</span>
+            <span class="detail-value" id="confirmPoints" style="color: var(--color-primary);">-</span>
+          </div>
+        </div>
+
+        <div class="success-footer">
+          <button class="btn secondary" onclick="window.print()">Print Receipt</button>
+          <button class="btn primary" onclick="window.location.href='index.html'">Book Another Flight</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="script-api.js"></script>
+</body>
+</html>

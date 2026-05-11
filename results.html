@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dune Air — Flight Results</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <header class="navbar small">
+    <div class="container nav-content">
+      <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">Dune Air</a>
+      <nav>
+        <a href="index.html">Book Flight</a>
+        <a href="loyalty.html">Dune Miles</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Login/Signup modal -->
+  <div id="loginModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="authModalTitle">Log In / Sign Up</h3>
+        <span class="close-modal">&times;</span>
+      </div>
+      <form id="loginForm" class="modal-form">
+        <input type="email" id="authEmail" placeholder="Email Address" required class="form-input">
+        <input type="password" id="authPassword" placeholder="Password" required class="form-input">
+        <div id="confirmPasswordField" style="display: none;">
+          <input type="password" id="authConfirmPassword" placeholder="Confirm Password" class="form-input">
+        </div>
+        <div id="authError" style="color: #d32f2f; font-size: 0.9em; margin-top: 10px; display: none;"></div>
+        <button type="submit" class="btn primary full-width" id="authSubmitBtn">Log In</button>
+        <div class="modal-footer">
+          <p id="authToggleText">Don't have an account? <a href="#" id="authToggleLink" style="color: var(--color-primary); font-weight: 700;">Sign Up</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <section class="container page-content">
+    <h2 class="page-title">Available Flights</h2>
+    <div id="resultsGrid" class="results-grid">
+      </div>
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="index.html" class="btn secondary">← Modify Search</a>
+    </div>
+  </section>
+  
+  <script src="auth.js"></script>
+  <script src="script-api.js"></script>
+</body>
+</html>

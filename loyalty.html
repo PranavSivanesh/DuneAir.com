@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dune Air — Dune Miles</title>
+  <!-- main stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- jquery library for DOM -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <!-- top navigation bar -->
+  <header class="navbar small">
+    <div class="container nav-content">
+      <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">Dune Air</a>
+      <nav>
+        <a href="index.html">Book Flight</a>
+        <a href="#">Log In</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- main loyalty program section -->
+  <section class="container page-content">
+    <h2 class="page-title">✈️ Dune Miles Loyalty Program</h2>
+    <p class="tagline" style="text-align:center; margin-bottom: 40px;">Earn miles and unlock exclusive benefits that elevate your journey with Dune Air.</p>
+
+    <!-- grid layout for all the tier cards -->
+    <div class="loyalty-grid">
+
+      <!-- bronze tier card -->
+      <div class="loyalty-card bronze">
+        <h3>Bronze Tier</h3>
+        <p class="miles-req">Entry Level</p>
+        <ul>
+          <li>Priority check-in and boarding.</li>
+          <li>10% bonus miles on all flights.</li>
+          <li>Waitlist priority on full flights.</li>
+        </ul>
+        <button class="btn primary">Start Earning</button>
+      </div>
+
+      <!-- silver tier card -->
+      <div class="loyalty-card silver">
+        <h3>Silver Tier</h3>
+        <p class="miles-req">Requires 25,000 Miles</p>
+        <ul>
+          <li>All Bronze benefits plus:</li>
+          <li>Free standard seat selection.</li>
+          <li>15% extra baggage allowance.</li>
+          <li>Dedicated Silver service desk.</li>
+        </ul>
+        <button class="btn primary">Upgrade Now</button>
+      </div>
+
+      <!-- gold tier card -->
+      <div class="loyalty-card gold">
+        <h3>Gold Tier</h3>
+        <p class="miles-req">Requires 50,000 Miles</p>
+        <ul>
+          <li>All Silver benefits plus:</li>
+          <li>Access to Business Class lounges.</li>
+          <li>25% bonus miles on all flights.</li>
+          <li>Priority baggage handling.</li>
+        </ul>
+        <button class="btn primary">Achieve Gold</button>
+      </div>
+
+      <!-- platinum tier card (highest level) -->
+      <div class="loyalty-card platinum">
+        <h3>Platinum Tier</h3>
+        <p class="miles-req">Requires 100,000 Miles</p>
+        <ul>
+          <li>All Gold benefits plus:</li>
+          <li>Access to First Class lounges.</li>
+          <li>Guaranteed Business Class seat booking.</li>
+          <li>Dedicated Platinum concierge.</li>
+        </ul>
+        <button class="btn primary">The Ultimate Tier</button>
+      </div>
+
+    </div>
+    <!-- back button to return home -->
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="index.html" class="btn secondary">← Back to Homepage</a>
+    </div>
+  </section>
+
+  <!-- main javascript file -->
+  <script src="script.js"></script>
+</body>
+</html>
